@@ -72,5 +72,5 @@ void test_all() {
   test_get();
   test_find();
   test_insert();
-  // test_delete();
+  test_delete();
 }

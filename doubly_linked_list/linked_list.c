@@ -43,17 +43,7 @@ Node *create_node(int value) {
   return node;
 }
 
-void free_node(Node *node) {
-  if (node->prev != NULL) {
-    node->prev->next = NULL;
-  }
-
-  if (node->next != NULL) {
-    node->next->prev = NULL;
-  }
-
-  free(node);
-}
+void free_node(Node *node) { free(node); }
 
 Node *get(LinkedList *list, int index) {
   if (list->head == NULL) {
@@ -162,20 +152,16 @@ void delete_index(LinkedList *list, int index) {
 
   Node *to_delete = get(list, index);
 
-  if (list->len == 1) {
-    list->head = list->tail = NULL;
+  if (to_delete->prev) {
+    to_delete->prev->next = to_delete->next;
   } else {
-    if (to_delete->prev) {
-      to_delete->prev = to_delete->next;
-    } else {
-      list->head = to_delete->next;
-    }
+    list->head = to_delete->next;
+  }
 
-    if (to_delete->next) {
-      to_delete->next->prev = to_delete->prev;
-    } else {
-      list->tail = to_delete->prev;
-    }
+  if (to_delete->next) {
+    to_delete->next->prev = to_delete->prev;
+  } else {
+    list->tail = to_delete->prev;
   }
 
   free_node(to_delete);

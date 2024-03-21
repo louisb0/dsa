@@ -31,6 +31,5 @@ void append(LinkedList *list, int value);
 void insert(LinkedList *list, int value, int index);
 
 void delete_index(LinkedList *list, int index);
-// void delete_value(LinkedList *list, int value);
 
 #endif // LINKED_LIST_H
