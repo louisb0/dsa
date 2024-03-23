@@ -57,6 +57,7 @@ Node *create_node(void *data) {
     return NULL;
   }
 
+  node->next = NULL;
   node->data = data;
   return node;
 }
@@ -127,4 +128,6 @@ int main() {
 
   assert(peak(q) == NULL);
   assert(dequeue(q) == NULL);
+
+  free_queue(q);
 }
