@@ -7,6 +7,26 @@ void swap(int arr[], int i, int j) {
   arr[j] = tmp;
 }
 
+int partition_hoares(int arr[], int l, int r) {
+  int pivot_val = arr[l + (r - l) / 2];
+
+  while (1) {
+    while (arr[l] < pivot_val) {
+      l = l + 1;
+    }
+
+    while (arr[r] > pivot_val) {
+      r = r - 1;
+    }
+
+    if (l >= r) {
+      return r;
+    }
+
+    swap(arr, l, r);
+  }
+}
+
 int partition(int arr[], int l, int r) {
   int pivot_idx = l + (r - l) / 2;
   int pivot_val = arr[pivot_idx];
@@ -33,7 +53,7 @@ void qsort(int arr[], int l, int r) {
     return;
   }
 
-  int pivot_idx = partition(arr, l, r);
+  int pivot_idx = partition_hoares(arr, l, r);
   qsort(arr, l, pivot_idx - 1);
   qsort(arr, pivot_idx + 1, r);
 }
